@@ -4,7 +4,9 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import MoviePage from './pages/MoviePage';
+import BookingPage from './pages/BookingPage';
 import Favorites from './components/Favorites';
+import MyBookings from './components/MyBookings';
 import Navbar from './components/Navbar';
 
 // Wrapper component to use useLocation
@@ -30,7 +32,9 @@ const AppWrapper = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home darkMode={darkMode} />} />
         <Route path="/movie/:id" element={<MoviePage />} />
+        <Route path="/booking/:id" element={<BookingPage />} />
         <Route path="/favorites" element={<Favorites darkMode={darkMode} />} />
+        <Route path="/my-bookings" element={<MyBookings darkMode={darkMode} />} />
       </Routes>
     </>
   );

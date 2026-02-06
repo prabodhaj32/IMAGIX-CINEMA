@@ -313,6 +313,30 @@ const MoviePage = () => {
                   </Box>
                 </Box>
 
+                {/* Action Buttons */}
+                <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+                  <Button
+                    variant="contained"
+                    size="large"
+                    onClick={() => navigate(`/booking/${id}`)}
+                    sx={{
+                      background: 'linear-gradient(135deg, #f472b6 0%, #a855f7 100%)',
+                      color: '#fff',
+                      fontWeight: 'bold',
+                      px: 4,
+                      py: 1.5,
+                      fontSize: '1.1rem',
+                      '&:hover': {
+                        background: 'linear-gradient(135deg, #ec4899 0%, #9333ea 100%)',
+                        transform: 'translateY(-2px)',
+                        boxShadow: '0 10px 25px rgba(168, 85, 247, 0.3)',
+                      },
+                    }}
+                  >
+                    Book Tickets
+                  </Button>
+                </Box>
+
                 {/* Overview */}
                 <Box sx={{ mb: 3 }}>
                   <Typography variant="h6" sx={{ color: '#fff', mb: 1.5, fontWeight: 'bold' }}>
