@@ -23,15 +23,20 @@ const MovieListItem = ({ movie }) => {
   return (
     <ListItem
       sx={{
-        borderRadius: 2,
-        mb: 1,
-        backgroundColor: 'background.paper',
-        boxShadow: 1,
-        '&:hover': {
-          backgroundColor: 'action.hover',
-          boxShadow: 2,
+        borderRadius: 3,
+        mb: 1.2,
+        background:
+          "linear-gradient(135deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.80) 60%, rgba(15, 23, 42, 0.94) 100%)",
+        border: "1px solid rgba(148, 163, 184, 0.35)",
+        boxShadow: "0 14px 35px rgba(15, 23, 42, 0.80)",
+        "&:hover": {
+          background:
+            "linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(15, 23, 42, 0.90) 60%, rgba(15, 23, 42, 0.98) 100%)",
+          boxShadow: "0 20px 55px rgba(15, 23, 42, 0.95)",
+          transform: "translateY(-2px)",
         },
-        cursor: 'pointer',
+        cursor: "pointer",
+        transition: "background 180ms ease, box-shadow 180ms ease, transform 180ms ease",
       }}
       onClick={() => navigate(`/movie/${movie.id}`)}
     >
@@ -44,13 +49,22 @@ const MovieListItem = ({ movie }) => {
       </ListItemAvatar>
       <ListItemText
         primary={
-          <Typography variant="h6" sx={{ fontWeight: 'bold' }}>
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: "bold",
+              color: "rgba(241,245,249,0.98)",
+            }}
+          >
             {movie.title}
           </Typography>
         }
         secondary={
           <Box>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+            <Typography
+              variant="body2"
+              sx={{ mb: 1, color: "rgba(148,163,184,0.96)" }}
+            >
               {movie.overview.length > 150
                 ? `${movie.overview.substring(0, 150)}...`
                 : movie.overview}
@@ -62,7 +76,10 @@ const MovieListItem = ({ movie }) => {
                 color="primary"
                 variant="outlined"
               />
-              <Typography variant="body2" color="text.secondary">
+              <Typography
+                variant="body2"
+                sx={{ color: "rgba(148,163,184,0.96)" }}
+              >
                 {movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A'}
               </Typography>
             </Box>

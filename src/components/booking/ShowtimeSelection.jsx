@@ -12,12 +12,17 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Paper,
+  Fade,
+  Zoom,
 } from '@mui/material';
 import {
   CalendarToday,
   AccessTime,
   TheaterComedy,
   AttachMoney,
+  LocationOn,
+  Star,
 } from '@mui/icons-material';
 
 // Mock showtime data - in a real app, this would come from an API
@@ -109,115 +114,222 @@ const ShowtimeSelection = ({ movie, onSelectShowtime }) => {
 
   return (
     <Box>
-      <Typography variant="h6" gutterBottom sx={{ color: '#ffffff', fontWeight: 'bold' }}>
-        Select Showtime
+      <Typography variant="h5" gutterBottom sx={{ 
+        color: '#ffffff', 
+        fontWeight: 'bold',
+        mb: 3,
+        background: 'linear-gradient(135deg, #fff 0%, #e5e7eb 100%)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        textFillColor: 'transparent',
+      }}>
+        📅 Select Showtime
       </Typography>
       
-      <Alert severity="info" sx={{ 
-        mb: 3, 
-        bgcolor: '#2a2a2a',
-        color: '#ffffff',
-        '& .MuiAlert-icon': { color: '#ff0000' }
-      }}>
-        Choose your preferred date, theater, and showtime. All prices are per ticket.
-      </Alert>
+      <Fade in={true} timeout={800}>
+        <Alert severity="info" sx={{ 
+          mb: 4, 
+          background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.2) 100%)',
+          color: '#ffffff',
+          border: '1px solid rgba(59, 130, 246, 0.3)',
+          borderRadius: '15px',
+          '& .MuiAlert-icon': { 
+            color: '#3b82f6',
+            fontSize: '1.5rem'
+          }
+        }}>
+          Choose your preferred date, theater, and showtime. All prices are per ticket.
+        </Alert>
+      </Fade>
 
-      {uniqueDates.map((date) => (
-        <Box key={date} sx={{ mb: 4 }}>
-          <Typography variant="subtitle1" sx={{ 
-            mb: 2, 
-            display: 'flex', 
-            alignItems: 'center',
-            color: '#ffffff',
-            fontWeight: 'bold'
-          }}>
-            <CalendarToday sx={{ mr: 1, color: '#ff0000' }} />
-            {new Date(date).toLocaleDateString('en-US', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </Typography>
-          
-          <Grid container spacing={2}>
-            {groupedShowtimes[date].map((showtime) => (
-              <Grid size={{ xs: 12, sm: 6, md: 4 }} key={showtime.id}>
-                <Box
-                  sx={{
-                    cursor: showtime.availableSeats > 0 ? 'pointer' : 'not-allowed',
-                    opacity: showtime.availableSeats > 0 ? 1 : 0.6,
-                    border: selectedShowtime?.id === showtime.id ? 2 : 1,
-                    borderColor: selectedShowtime?.id === showtime.id ? '#ff0000' : '#333333',
-                    borderRadius: 2,
-                    p: 2,
-                    bgcolor: '#1a1a1a',
-                    transition: 'all 0.2s ease',
-                    '&:hover': showtime.availableSeats > 0 ? {
-                      bgcolor: '#2a2a2a',
-                      transform: 'translateY(-2px)',
-                      borderColor: '#ff0000'
-                    } : {},
-                  }}
-                  onClick={() => handleShowtimeSelect(showtime)}
-                >
-                  <Typography variant="subtitle2" sx={{ 
-                    fontWeight: 'bold', 
-                    mb: 1,
-                    color: '#ffffff'
-                  }}>
-                    {showtime.theater.name}
-                  </Typography>
-                  
-                  <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <AccessTime fontSize="small" sx={{ color: '#ff0000' }} />
-                      <Typography variant="body2" sx={{ color: '#cccccc' }}>
-                        {showtime.time}
-                      </Typography>
-                    </Box>
-                    
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <TheaterComedy fontSize="small" sx={{ color: '#ff0000' }} />
-                      <Typography variant="body2" sx={{ color: '#cccccc' }}>
-                        {showtime.screenType}
-                      </Typography>
-                    </Box>
-                    
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <AttachMoney fontSize="small" sx={{ color: '#ff0000' }} />
-                      <Typography variant="body2" sx={{ color: '#cccccc' }}>
-                        ${showtime.price}
-                      </Typography>
-                    </Box>
-                    
-                    <Chip
-                      label={`${showtime.availableSeats} seats available`}
-                      size="small"
-                      color={showtime.availableSeats > 10 ? 'success' : showtime.availableSeats > 0 ? 'warning' : 'error'}
-                      sx={{ 
-                        mt: 1,
-                        bgcolor: showtime.availableSeats > 10 ? '#2d5a2d' : 
-                                showtime.availableSeats > 0 ? '#5a4a2d' : '#5a2d2d',
-                        color: '#ffffff'
+      {uniqueDates.map((date, dateIndex) => (
+        <Zoom in={true} timeout={1000 + dateIndex * 200} key={date}>
+          <Box sx={{ mb: 4 }}>
+            <Typography variant="h6" sx={{ 
+              mb: 3, 
+              display: 'flex', 
+              alignItems: 'center',
+              color: '#ffffff',
+              fontWeight: 'bold',
+              background: 'linear-gradient(135deg, #a855f7 0%, #ec4899 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              textFillColor: 'transparent',
+            }}>
+              <CalendarToday sx={{ 
+                mr: 2, 
+                color: '#a855f7',
+                fontSize: '1.8rem',
+                filter: 'drop-shadow(0 0 8px rgba(168, 85, 247, 0.6))'
+              }} />
+              {new Date(date).toLocaleDateString('en-US', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </Typography>
+            
+            <Grid container spacing={3}>
+              {groupedShowtimes[date].map((showtime, index) => (
+                <Grid item xs={12} sm={6} md={4} key={showtime.id}>
+                  <Zoom in={true} timeout={1200 + dateIndex * 200 + index * 100}>
+                    <Paper
+                      elevation={showtime.availableSeats > 0 ? 8 : 2}
+                      sx={{
+                        cursor: showtime.availableSeats > 0 ? 'pointer' : 'not-allowed',
+                        opacity: showtime.availableSeats > 0 ? 1 : 0.6,
+                        border: selectedShowtime?.id === showtime.id ? 3 : 2,
+                        borderColor: selectedShowtime?.id === showtime.id ? '#a855f7' : 'rgba(255, 255, 255, 0.1)',
+                        borderRadius: '20px',
+                        p: 3,
+                        background: showtime.availableSeats > 0 
+                          ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%)'
+                          : 'rgba(255, 255, 255, 0.02)',
+                        backdropFilter: 'blur(10px)',
+                        transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                        height: '100%',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        '&:hover': showtime.availableSeats > 0 ? {
+                          background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.15) 0%, rgba(236, 72, 153, 0.15) 100%)',
+                          transform: 'translateY(-4px) scale(1.02)',
+                          borderColor: '#a855f7',
+                          boxShadow: '0 12px 24px rgba(168, 85, 247, 0.3)',
+                        } : {},
                       }}
-                    />
-                  </Box>
-                </Box>
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
+                      onClick={() => handleShowtimeSelect(showtime)}
+                    >
+                      <Box sx={{ mb: 2 }}>
+                        <Typography variant="h6" sx={{ 
+                          fontWeight: 'bold', 
+                          mb: 1,
+                          color: '#ffffff',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 1
+                        }}>
+                          <TheaterComedy sx={{ color: '#f472b6', fontSize: '1.2rem' }} />
+                          {showtime.theater.name}
+                        </Typography>
+                        
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mb: 1 }}>
+                          <LocationOn fontSize="small" sx={{ color: '#a855f7' }} />
+                          <Typography variant="body2" sx={{ color: '#cbd5e1', fontSize: '0.85rem' }}>
+                            {showtime.theater.address}
+                          </Typography>
+                        </Box>
+                      </Box>
+                      
+                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, flexGrow: 1 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                          <Box sx={{ 
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                            background: 'rgba(59, 130, 246, 0.2)',
+                            px: 2,
+                            py: 1,
+                            borderRadius: '10px'
+                          }}>
+                            <AccessTime fontSize="small" sx={{ color: '#3b82f6' }} />
+                            <Typography variant="body2" sx={{ 
+                              color: '#ffffff',
+                              fontWeight: 'bold'
+                            }}>
+                              {showtime.time}
+                            </Typography>
+                          </Box>
+                          
+                          <Box sx={{ 
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                            background: showtime.screenType === 'IMAX' 
+                              ? 'rgba(251, 146, 60, 0.2)' 
+                              : 'rgba(16, 185, 129, 0.2)',
+                            px: 2,
+                            py: 1,
+                            borderRadius: '10px'
+                          }}>
+                            <Star fontSize="small" sx={{ 
+                              color: showtime.screenType === 'IMAX' ? '#fb923c' : '#10b981' 
+                            }} />
+                            <Typography variant="body2" sx={{ 
+                              color: '#ffffff',
+                              fontWeight: 'bold',
+                              fontSize: '0.8rem'
+                            }}>
+                              {showtime.screenType}
+                            </Typography>
+                          </Box>
+                        </Box>
+                        
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                          <Box sx={{ 
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: 1,
+                            background: 'rgba(16, 185, 129, 0.2)',
+                            px: 2,
+                            py: 1,
+                            borderRadius: '10px'
+                          }}>
+                            <AttachMoney fontSize="small" sx={{ color: '#10b981' }} />
+                            <Typography variant="body2" sx={{ 
+                              color: '#ffffff',
+                              fontWeight: 'bold'
+                            }}>
+                              ${showtime.price}
+                            </Typography>
+                          </Box>
+                        </Box>
+                        
+                        <Box sx={{ mt: 'auto' }}>
+                          <Chip
+                            label={`${showtime.availableSeats} seats left`}
+                            size="small"
+                            sx={{ 
+                              width: '100%',
+                              background: showtime.availableSeats > 20 
+                                ? 'linear-gradient(135deg, rgba(16, 185, 129, 0.4) 0%, rgba(5, 150, 105, 0.4) 100%)' 
+                                : showtime.availableSeats > 10 
+                                ? 'linear-gradient(135deg, rgba(251, 146, 60, 0.4) 0%, rgba(245, 158, 11, 0.4) 100%)'
+                                : 'linear-gradient(135deg, rgba(239, 68, 68, 0.4) 0%, rgba(220, 38, 38, 0.4) 100%)',
+                              color: '#ffffff',
+                              border: '1px solid rgba(255, 255, 255, 0.2)',
+                              fontWeight: 'bold',
+                              fontSize: '0.8rem'
+                            }}
+                          />
+                        </Box>
+                      </Box>
+                    </Paper>
+                  </Zoom>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Zoom>
       ))}
       
       {showtimes.length === 0 && (
-        <Alert severity="warning" sx={{ 
-          bgcolor: '#5a4a2d',
-          color: '#ffffff',
-          '& .MuiAlert-icon': { color: '#ffaa00' }
-        }}>
-          No showtimes available for this movie. Please check back later.
-        </Alert>
+        <Zoom in={true} timeout={1400}>
+          <Alert severity="warning" sx={{ 
+            background: 'linear-gradient(135deg, rgba(251, 146, 60, 0.2) 0%, rgba(245, 158, 11, 0.2) 100%)',
+            color: '#ffffff',
+            border: '1px solid rgba(251, 146, 60, 0.3)',
+            borderRadius: '15px',
+            '& .MuiAlert-icon': { 
+              color: '#fb923c',
+              fontSize: '1.5rem'
+            }
+          }}>
+            🎭 No showtimes available for this movie. Please check back later.
+          </Alert>
+        </Zoom>
       )}
     </Box>
   );
