@@ -130,7 +130,7 @@ const Home = ({ darkMode = true }) => {
     backgroundSize: "cover",
     backgroundPosition: "center",
     backgroundRepeat: "no-repeat",
-    filter: "brightness(0.7) contrast(1.1)",
+    // filter: "brightness(0.7) contrast(1.1)",
     zIndex: 0,
   }}
 />

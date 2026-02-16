@@ -25,7 +25,27 @@ const Login = () => {
 
     const savedUser = JSON.parse(stored);
     if (email === savedUser.email && password === savedUser.password) {
+      // Save current user session with complete data
+      const currentUserData = {
+        name: savedUser.fullName || savedUser.name || 'User',
+        email: savedUser.email,
+        phone: savedUser.phone || '+1 234 567 8900',
+        location: savedUser.location || 'New York, USA',
+        joinDate: savedUser.joinDate || new Date().toLocaleDateString('en-US', { 
+          year: 'numeric', 
+          month: 'long', 
+          day: 'numeric' 
+        }),
+      };
+      
+      localStorage.setItem("currentUser", JSON.stringify(currentUserData));
       localStorage.setItem("user", JSON.stringify({ email }));
+      
+      // Dispatch custom event to notify other components
+      window.dispatchEvent(new CustomEvent('userUpdated', { 
+        detail: currentUserData 
+      }));
+      
       navigate("/home");
     } else {
       alert("Invalid email or password. Try again.");
@@ -46,14 +66,24 @@ const Login = () => {
     }
 
     if (!agreeToTerms) {
-      alert("Please agree to the Terms of Service and Privacy Policy.");
+      alert("Please agree to Terms of Service and Privacy Policy.");
       return;
     }
 
-    localStorage.setItem(
-      "userCredentials",
-      JSON.stringify({ fullName, email, password })
-    );
+    const userData = {
+      fullName,
+      email,
+      password,
+      phone: '+1 234 567 8900',
+      location: 'New York, USA',
+      joinDate: new Date().toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      }),
+    };
+
+    localStorage.setItem("userCredentials", JSON.stringify(userData));
     alert("Registration successful! Please log in.");
     setIsLogin(true);
   };

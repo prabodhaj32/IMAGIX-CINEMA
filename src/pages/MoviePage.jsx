@@ -42,7 +42,7 @@ import {
 import { fetchMovieDetails } from '../utils/api';
 import { MovieContext } from '../context/MovieContext';
 
-const MoviePage = () => {
+const MoviePage = ({ darkMode }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { toggleFavorite, favorites } = useContext(MovieContext);
@@ -158,7 +158,7 @@ const MoviePage = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+          background: darkMode ? "#0a192f" : "#1e3a5f",
         }}
       >
         <Box sx={{ textAlign: 'center' }}>
@@ -179,7 +179,7 @@ const MoviePage = () => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+          background: darkMode ? "#030b17" : "#1e3a5f",
         }}
       >
         <Paper
@@ -217,7 +217,7 @@ const MoviePage = () => {
     <Box
       sx={{
         minHeight: '100vh',
-        background: `radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.15) 0%, transparent 50%), radial-gradient(circle at 40% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%), linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)`,
+        background: darkMode ? "#0a192f" : "#1e3a5f",
         py: 4,
         position: 'relative',
         overflow: 'hidden'

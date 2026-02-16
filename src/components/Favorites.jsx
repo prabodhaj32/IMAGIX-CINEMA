@@ -3,12 +3,19 @@ import { Grid, Typography, Box } from "@mui/material"; // Importing MUI componen
 import MovieCard from "../components/MovieCard"; // Custom component to display individual movie details
 import { MovieContext } from "../context/MovieContext"; // Importing context to access favorite movies
 
-const Favorites = () => {
+const Favorites = ({ darkMode }) => {
   // Accessing the 'favorites' array from context
   const { favorites } = useContext(MovieContext);
 
   return (
-    <Box p={3}> {/* Box provides padding and layout container */}
+    <Box
+      sx={{
+        minHeight: "100vh",
+        pt: 12,
+        px: 3,
+        background: darkMode ? "#0a192f" : "#1e3a5f",
+      }}
+    >
       {/* Title heading */}
       <Typography variant="h4" mb={3}>
         ❤️ Favorite Movies

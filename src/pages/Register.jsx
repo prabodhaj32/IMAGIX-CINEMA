@@ -28,7 +28,20 @@ const Register = () => {
       return;
     }
 
-    localStorage.setItem("userCredentials", JSON.stringify({ fullName, email, password }));
+    const userData = {
+      fullName,
+      email,
+      password,
+      phone: '+1 234 567 8900',
+      location: 'New York, USA',
+      joinDate: new Date().toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+      }),
+    };
+
+    localStorage.setItem("userCredentials", JSON.stringify(userData));
     alert("Registration successful! Please log in.");
     navigate("/");
   };

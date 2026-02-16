@@ -75,9 +75,20 @@ export const MovieProvider = ({ children }) => {
   const toggleFavorite = (movie) => {
     setFavorites((prev) => {
       const exists = prev.find((m) => m.id === movie.id);
-      return exists
+      const newFavorites = exists
         ? prev.filter((m) => m.id !== movie.id) // Remove from favorites
         : [...prev, movie]; // Add to favorites
+      
+      // Dispatch events to notify other components
+      window.dispatchEvent(new CustomEvent('favoritesUpdated', { 
+        detail: { 
+          favorites: newFavorites,
+          action: exists ? 'removed' : 'added',
+          movie: movie
+        } 
+      }));
+      
+      return newFavorites;
     });
   };
 
