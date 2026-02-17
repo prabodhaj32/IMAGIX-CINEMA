@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "../assets/f2.jpg"; // Make sure the path is correct
+import backgroundImage from "../assets/F3.png"; // Make sure the path is correct
 
 const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -93,7 +93,7 @@ const Login = () => {
       className="flex justify-center items-center min-h-screen bg-cover bg-center"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="bg-white/10 backdrop-blur-lg p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
+      <div className="bg-white/5 backdrop-blur p-8 rounded-2xl shadow-2xl w-full max-w-md border border-white/20">
         <h1 className="text-3xl font-bold text-white mb-2 text-center">
           {isLogin ? "Welcome Back" : "Create Account"}
         </h1>

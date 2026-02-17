@@ -369,19 +369,30 @@ const Profile = ({ darkMode }) => {
         minHeight: "100vh",
         pt: 12,
         px: 3,
-        background: darkMode ? "#0a192f" : "#1e3a5f",
+        background: darkMode 
+          ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+          : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
       }}
     >
       <Container maxWidth="lg" sx={{ py: 4 }}>
       {/* Profile Header */}
       <Paper
-        elevation={4}
+        elevation={8}
         sx={{
           p: 4,
           mb: 4,
-          background: darkMode ? '#1e293b' : '#ffffff',
-          color: darkMode ? '#ffffff' : '#000000',
-          borderRadius: '16px',
+          background: darkMode 
+            ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 100%)'
+            : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)',
+          color: darkMode ? '#ffffff' : '#1e293b',
+          borderRadius: '24px',
+          border: darkMode 
+            ? '1px solid rgba(139, 92, 246, 0.3)'
+            : '1px solid rgba(139, 92, 246, 0.2)',
+          backdropFilter: 'blur(10px)',
+          boxShadow: darkMode
+            ? '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(139, 92, 246, 0.2)'
+            : '0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(139, 92, 246, 0.1)',
         }}
       >
         <Grid container spacing={4} alignItems="center">
@@ -394,17 +405,18 @@ const Profile = ({ darkMode }) => {
                   height: 120,
                   mx: 'auto',
                   mb: 2,
-                  bgcolor: '#475569',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
                   fontSize: '3rem',
-                  border: '3px solid #64748b',
+                  border: '4px solid #8b5cf6',
+                  boxShadow: '0 8px 32px rgba(139, 92, 246, 0.3)',
                 }}
               >
                 <Person sx={{ fontSize: '4rem' }} />
               </Avatar>
-              <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1 }}>
+              <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 1, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 {user.name}
               </Typography>
-              <Typography variant="body2" sx={{ color: '#94a3b8', mb: 2 }}>
+              <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280', mb: 2 }}>
                 {user.email}
               </Typography>
               <Button
@@ -413,11 +425,16 @@ const Profile = ({ darkMode }) => {
                 size="small"
                 onClick={handleEditProfile}
                 sx={{
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: darkMode ? '#ffffff' : '#000000',
+                  borderColor: '#8b5cf6',
+                  color: '#8b5cf6',
+                  background: 'rgba(139, 92, 246, 0.1)',
                   '&:hover': {
-                    background: 'rgba(255,255,255,0.1)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: '#7c3aed',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 Edit Photo
@@ -426,7 +443,7 @@ const Profile = ({ darkMode }) => {
           </Grid>
 
           <Grid item xs={12} md={6}>
-            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
+            <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               Profile Information
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -435,12 +452,24 @@ const Profile = ({ darkMode }) => {
                 alignItems: 'center', 
                 gap: 2,
                 p: 2,
-                borderRadius: '8px',
-                backgroundColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
+                borderRadius: '12px',
+                background: darkMode 
+                  ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)'
+                  : 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%)',
+                border: darkMode 
+                  ? '1px solid rgba(139, 92, 246, 0.2)'
+                  : '1px solid rgba(139, 92, 246, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: darkMode
+                    ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%)'
+                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)',
+                  transform: 'translateX(4px)',
+                },
               }}>
-                <Person sx={{ color: '#475569', fontSize: '1.5rem' }} />
+                <Person sx={{ color: '#8b5cf6', fontSize: '1.5rem' }} />
                 <Box>
-                  <Typography variant="body2" sx={{ color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280', fontSize: '0.875rem' }}>
                     Full Name
                   </Typography>
                   <Typography variant="body1" sx={{ fontWeight: '500' }}>
@@ -454,12 +483,24 @@ const Profile = ({ darkMode }) => {
                 alignItems: 'center', 
                 gap: 2,
                 p: 2,
-                borderRadius: '8px',
-                backgroundColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
+                borderRadius: '12px',
+                background: darkMode 
+                  ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)'
+                  : 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%)',
+                border: darkMode 
+                  ? '1px solid rgba(139, 92, 246, 0.2)'
+                  : '1px solid rgba(139, 92, 246, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: darkMode
+                    ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%)'
+                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)',
+                  transform: 'translateX(4px)',
+                },
               }}>
-                <Email sx={{ color: '#475569', fontSize: '1.5rem' }} />
+                <Email sx={{ color: '#8b5cf6', fontSize: '1.5rem' }} />
                 <Box>
-                  <Typography variant="body2" sx={{ color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280', fontSize: '0.875rem' }}>
                     Email Address
                   </Typography>
                   <Typography variant="body1" sx={{ fontWeight: '500' }}>
@@ -473,12 +514,24 @@ const Profile = ({ darkMode }) => {
                 alignItems: 'center', 
                 gap: 2,
                 p: 2,
-                borderRadius: '8px',
-                backgroundColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
+                borderRadius: '12px',
+                background: darkMode 
+                  ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)'
+                  : 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%)',
+                border: darkMode 
+                  ? '1px solid rgba(139, 92, 246, 0.2)'
+                  : '1px solid rgba(139, 92, 246, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: darkMode
+                    ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%)'
+                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)',
+                  transform: 'translateX(4px)',
+                },
               }}>
-                <Phone sx={{ color: '#475569', fontSize: '1.5rem' }} />
+                <Phone sx={{ color: '#8b5cf6', fontSize: '1.5rem' }} />
                 <Box>
-                  <Typography variant="body2" sx={{ color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280', fontSize: '0.875rem' }}>
                     Phone Number
                   </Typography>
                   <Typography variant="body1" sx={{ fontWeight: '500' }}>
@@ -492,12 +545,24 @@ const Profile = ({ darkMode }) => {
                 alignItems: 'center', 
                 gap: 2,
                 p: 2,
-                borderRadius: '8px',
-                backgroundColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
+                borderRadius: '12px',
+                background: darkMode 
+                  ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)'
+                  : 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%)',
+                border: darkMode 
+                  ? '1px solid rgba(139, 92, 246, 0.2)'
+                  : '1px solid rgba(139, 92, 246, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: darkMode
+                    ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%)'
+                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)',
+                  transform: 'translateX(4px)',
+                },
               }}>
-                <LocationOn sx={{ color: '#475569', fontSize: '1.5rem' }} />
+                <LocationOn sx={{ color: '#8b5cf6', fontSize: '1.5rem' }} />
                 <Box>
-                  <Typography variant="body2" sx={{ color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280', fontSize: '0.875rem' }}>
                     Location
                   </Typography>
                   <Typography variant="body1" sx={{ fontWeight: '500' }}>
@@ -511,12 +576,24 @@ const Profile = ({ darkMode }) => {
                 alignItems: 'center', 
                 gap: 2,
                 p: 2,
-                borderRadius: '8px',
-                backgroundColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
+                borderRadius: '12px',
+                background: darkMode 
+                  ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)'
+                  : 'linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(167, 139, 250, 0.05) 100%)',
+                border: darkMode 
+                  ? '1px solid rgba(139, 92, 246, 0.2)'
+                  : '1px solid rgba(139, 92, 246, 0.1)',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  background: darkMode
+                    ? 'linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(167, 139, 250, 0.2) 100%)'
+                    : 'linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%)',
+                  transform: 'translateX(4px)',
+                },
               }}>
-                <CalendarToday sx={{ color: '#475569', fontSize: '1.5rem' }} />
+                <CalendarToday sx={{ color: '#8b5cf6', fontSize: '1.5rem' }} />
                 <Box>
-                  <Typography variant="body2" sx={{ color: '#94a3b8', fontSize: '0.875rem' }}>
+                  <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280', fontSize: '0.875rem' }}>
                     Member Since
                   </Typography>
                   <Typography variant="body1" sx={{ fontWeight: '500' }}>
@@ -529,7 +606,7 @@ const Profile = ({ darkMode }) => {
 
           <Grid item xs={12} md={3}>
             <Box sx={{ textAlign: 'center' }}>
-              <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 3 }}>
+              <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 Quick Actions
               </Typography>
               <Button
@@ -539,10 +616,15 @@ const Profile = ({ darkMode }) => {
                 fullWidth
                 sx={{
                   mb: 2,
-                  backgroundColor: '#475569',
+                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                  color: '#ffffff',
+                  border: 'none',
                   '&:hover': {
-                    backgroundColor: '#64748b',
+                    background: 'linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%)',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 8px 25px rgba(139, 92, 246, 0.4)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 Edit Profile
@@ -554,11 +636,16 @@ const Profile = ({ darkMode }) => {
                 fullWidth
                 sx={{
                   mb: 2,
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: darkMode ? '#ffffff' : '#000000',
+                  borderColor: '#8b5cf6',
+                  color: '#8b5cf6',
+                  background: 'rgba(139, 92, 246, 0.1)',
                   '&:hover': {
-                    background: 'rgba(255,255,255,0.1)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: '#7c3aed',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 Settings
@@ -569,11 +656,16 @@ const Profile = ({ darkMode }) => {
                 onClick={() => setPasswordDialogOpen(true)}
                 fullWidth
                 sx={{
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: darkMode ? '#ffffff' : '#000000',
+                  borderColor: '#8b5cf6',
+                  color: '#8b5cf6',
+                  background: 'rgba(139, 92, 246, 0.1)',
                   '&:hover': {
-                    background: 'rgba(255,255,255,0.1)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: '#7c3aed',
+                    transform: 'translateY(-2px)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 Change Password
@@ -584,7 +676,7 @@ const Profile = ({ darkMode }) => {
       </Paper>
 
       {/* Activity Overview */}
-      <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
+      <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
         Activity Overview
       </Typography>
       <Grid container spacing={3} sx={{ mb: 4 }}>
@@ -605,14 +697,14 @@ const Profile = ({ darkMode }) => {
             }}
           >
             <CardContent>
-              <Movie sx={{ fontSize: '3rem', color: '#475569', mb: 1 }} />
-              <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+              <Movie sx={{ fontSize: '3rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', mb: 1 }} />
+              <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 {userActivity.moviesWatched}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280' }}>
                 Movies Watched
               </Typography>
-              <Typography variant="caption" sx={{ color: '#94a3b8', mt: 1 }}>
+              <Typography variant="caption" sx={{ color: darkMode ? '#c4b5fd' : '#9ca3af', mt: 1 }}>
                 All time
               </Typography>
             </CardContent>
@@ -622,28 +714,35 @@ const Profile = ({ darkMode }) => {
         <Grid item xs={12} sm={6} md={3}>
           <Card
             sx={{
-              background: darkMode ? '#1e293b' : '#ffffff',
-              color: darkMode ? '#ffffff' : '#000000',
+              background: darkMode 
+                ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 100%)'
+                : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)',
+              color: darkMode ? '#ffffff' : '#1e293b',
               textAlign: 'center',
               py: 3,
-              border: '1px solid #e2e8f0',
-              borderRadius: '12px',
-              transition: 'transform 0.2s, box-shadow 0.2s',
+              border: darkMode 
+                ? '1px solid rgba(139, 92, 246, 0.3)'
+                : '1px solid rgba(139, 92, 246, 0.2)',
+              borderRadius: '16px',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              backdropFilter: 'blur(10px)',
               '&:hover': {
-                transform: 'translateY(-4px)',
-                boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+                transform: 'translateY(-8px) scale(1.02)',
+                boxShadow: darkMode
+                  ? '0 20px 40px rgba(139, 92, 246, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.2)'
+                  : '0 20px 40px rgba(139, 92, 246, 0.2), 0 0 0 1px rgba(139, 92, 246, 0.1)',
               },
             }}
           >
             <CardContent>
-              <BookmarkBorder sx={{ fontSize: '3rem', color: '#475569', mb: 1 }} />
-              <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+              <BookmarkBorder sx={{ fontSize: '3rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', mb: 1 }} />
+              <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 {userActivity.favorites}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280' }}>
                 Favorites
               </Typography>
-              <Typography variant="caption" sx={{ color: '#94a3b8', mt: 1 }}>
+              <Typography variant="caption" sx={{ color: darkMode ? '#c4b5fd' : '#9ca3af', mt: 1 }}>
                 Total saved
               </Typography>
             </CardContent>
@@ -653,28 +752,35 @@ const Profile = ({ darkMode }) => {
         <Grid item xs={12} sm={6} md={3}>
           <Card
             sx={{
-              background: darkMode ? '#1e293b' : '#ffffff',
-              color: darkMode ? '#ffffff' : '#000000',
+              background: darkMode 
+                ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 100%)'
+                : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)',
+              color: darkMode ? '#ffffff' : '#1e293b',
               textAlign: 'center',
               py: 3,
-              border: '1px solid #e2e8f0',
-              borderRadius: '12px',
-              transition: 'transform 0.2s, box-shadow 0.2s',
+              border: darkMode 
+                ? '1px solid rgba(139, 92, 246, 0.3)'
+                : '1px solid rgba(139, 92, 246, 0.2)',
+              borderRadius: '16px',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              backdropFilter: 'blur(10px)',
               '&:hover': {
-                transform: 'translateY(-4px)',
-                boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+                transform: 'translateY(-8px) scale(1.02)',
+                boxShadow: darkMode
+                  ? '0 20px 40px rgba(139, 92, 246, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.2)'
+                  : '0 20px 40px rgba(139, 92, 246, 0.2), 0 0 0 1px rgba(139, 92, 246, 0.1)',
               },
             }}
           >
             <CardContent>
-              <History sx={{ fontSize: '3rem', color: '#475569', mb: 1 }} />
-              <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+              <History sx={{ fontSize: '3rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', mb: 1 }} />
+              <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 {userActivity.bookings}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280' }}>
                 Bookings
               </Typography>
-              <Typography variant="caption" sx={{ color: '#94a3b8', mt: 1 }}>
+              <Typography variant="caption" sx={{ color: darkMode ? '#c4b5fd' : '#9ca3af', mt: 1 }}>
                 Active & Past
               </Typography>
             </CardContent>
@@ -684,28 +790,35 @@ const Profile = ({ darkMode }) => {
         <Grid item xs={12} sm={6} md={3}>
           <Card
             sx={{
-              background: darkMode ? '#1e293b' : '#ffffff',
-              color: darkMode ? '#ffffff' : '#000000',
+              background: darkMode 
+                ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 100%)'
+                : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)',
+              color: darkMode ? '#ffffff' : '#1e293b',
               textAlign: 'center',
               py: 3,
-              border: '1px solid #e2e8f0',
-              borderRadius: '12px',
-              transition: 'transform 0.2s, box-shadow 0.2s',
+              border: darkMode 
+                ? '1px solid rgba(139, 92, 246, 0.3)'
+                : '1px solid rgba(139, 92, 246, 0.2)',
+              borderRadius: '16px',
+              transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+              backdropFilter: 'blur(10px)',
               '&:hover': {
-                transform: 'translateY(-4px)',
-                boxShadow: '0 8px 25px rgba(0,0,0,0.15)',
+                transform: 'translateY(-8px) scale(1.02)',
+                boxShadow: darkMode
+                  ? '0 20px 40px rgba(139, 92, 246, 0.3), 0 0 0 1px rgba(139, 92, 246, 0.2)'
+                  : '0 20px 40px rgba(139, 92, 246, 0.2), 0 0 0 1px rgba(139, 92, 246, 0.1)',
               },
             }}
           >
             <CardContent>
-              <CalendarToday sx={{ fontSize: '3rem', color: '#475569', mb: 1 }} />
-              <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1 }}>
+              <CalendarToday sx={{ fontSize: '3rem', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', mb: 1 }} />
+              <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 1, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 {userActivity.daysActive}
               </Typography>
-              <Typography variant="body2" color="text.secondary">
+              <Typography variant="body2" sx={{ color: darkMode ? '#a78bfa' : '#6b7280' }}>
                 Days Active
               </Typography>
-              <Typography variant="caption" sx={{ color: '#94a3b8', mt: 1 }}>
+              <Typography variant="caption" sx={{ color: darkMode ? '#c4b5fd' : '#9ca3af', mt: 1 }}>
                 Since joining
               </Typography>
             </CardContent>
@@ -713,131 +826,34 @@ const Profile = ({ darkMode }) => {
         </Grid>
       </Grid>
 
-      {/* Recent Activity Section */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={6}>
-          <Paper
-            elevation={4}
-            sx={{
-              p: 3,
-              background: darkMode ? '#1e293b' : '#ffffff',
-              color: darkMode ? '#ffffff' : '#000000',
-              borderRadius: '16px',
-              height: '100%',
-            }}
-          >
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 2 }}>
-              Recent Movies Watched
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {userActivity.recentMovies.map((movie) => (
-                <Box
-                  key={movie.id}
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    p: 2,
-                    borderRadius: '8px',
-                    backgroundColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
-                    '&:hover': {
-                      backgroundColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
-                    },
-                  }}
-                >
-                  <Box>
-                    <Typography variant="body1" sx={{ fontWeight: '500' }}>
-                      {movie.title}
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: '#94a3b8' }}>
-                      {movie.date}
-                    </Typography>
-                  </Box>
-                  <Box sx={{ textAlign: 'right' }}>
-                    <Typography variant="body2" sx={{ color: '#475569', fontWeight: 'bold' }}>
-                      ⭐ {movie.rating}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-          </Paper>
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <Paper
-            elevation={4}
-            sx={{
-              p: 3,
-              background: darkMode ? '#1e293b' : '#ffffff',
-              color: darkMode ? '#ffffff' : '#000000',
-              borderRadius: '16px',
-              height: '100%',
-            }}
-          >
-            <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold', mb: 2 }}>
-              Upcoming Bookings
-            </Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {userActivity.upcomingBookings.map((booking) => (
-                <Box
-                  key={booking.id}
-                  sx={{
-                    p: 2,
-                    borderRadius: '8px',
-                    backgroundColor: darkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.02)',
-                    '&:hover': {
-                      backgroundColor: darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
-                    },
-                  }}
-                >
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'start', mb: 1 }}>
-                    <Typography variant="body1" sx={{ fontWeight: '500' }}>
-                      {booking.movie}
-                    </Typography>
-                    <Typography variant="caption" sx={{ 
-                      color: '#059669', 
-                      backgroundColor: 'rgba(5, 150, 105, 0.1)', 
-                      px: 1, 
-                      borderRadius: '4px',
-                      fontSize: '0.75rem'
-                    }}>
-                      UPCOMING
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="caption" sx={{ color: '#94a3b8' }}>
-                      📅 {booking.date} at {booking.time}
-                    </Typography>
-                    <Typography variant="caption" sx={{ color: '#475569', fontWeight: 'bold' }}>
-                      Seats: {booking.seats}
-                    </Typography>
-                  </Box>
-                </Box>
-              ))}
-            </Box>
-          </Paper>
-        </Grid>
-      </Grid>
-
+      
       {/* Account Actions */}
       <Paper
-        elevation={4}
+        elevation={8}
         sx={{
           p: 4,
-          background: darkMode ? '#1e293b' : '#ffffff',
-          color: darkMode ? '#ffffff' : '#000000',
-          borderRadius: '16px',
+          background: darkMode 
+            ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(51, 65, 85, 0.95) 100%)'
+            : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)',
+          color: darkMode ? '#ffffff' : '#1e293b',
+          borderRadius: '24px',
+          border: darkMode 
+            ? '1px solid rgba(139, 92, 246, 0.3)'
+            : '1px solid rgba(139, 92, 246, 0.2)',
+          backdropFilter: 'blur(10px)',
+          boxShadow: darkMode
+            ? '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(139, 92, 246, 0.2)'
+            : '0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(139, 92, 246, 0.1)',
         }}
       >
-        <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3 }}>
+        <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold', mb: 3, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           Account Management
         </Typography>
-        <Divider sx={{ mb: 3, borderColor: 'rgba(255,255,255,0.1)' }} />
+        <Divider sx={{ mb: 3, borderColor: 'rgba(139, 92, 246, 0.2)' }} />
         
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 2 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 2, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               Profile Settings
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -847,13 +863,18 @@ const Profile = ({ darkMode }) => {
                 fullWidth
                 onClick={handleEditProfile}
                 sx={{
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: darkMode ? '#ffffff' : '#000000',
+                  borderColor: '#8b5cf6',
+                  color: '#8b5cf6',
+                  background: 'rgba(139, 92, 246, 0.1)',
                   py: 1.5,
                   justifyContent: 'flex-start',
                   '&:hover': {
-                    background: 'rgba(255,255,255,0.1)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: '#7c3aed',
+                    transform: 'translateX(4px)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 Update Profile Information
@@ -864,13 +885,18 @@ const Profile = ({ darkMode }) => {
                 fullWidth
                 onClick={() => setPasswordDialogOpen(true)}
                 sx={{
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: darkMode ? '#ffffff' : '#000000',
+                  borderColor: '#8b5cf6',
+                  color: '#8b5cf6',
+                  background: 'rgba(139, 92, 246, 0.1)',
                   py: 1.5,
                   justifyContent: 'flex-start',
                   '&:hover': {
-                    background: 'rgba(255,255,255,0.1)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: '#7c3aed',
+                    transform: 'translateX(4px)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 Change Password
@@ -881,13 +907,18 @@ const Profile = ({ darkMode }) => {
                 fullWidth
                 onClick={handleSettings}
                 sx={{
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: darkMode ? '#ffffff' : '#000000',
+                  borderColor: '#8b5cf6',
+                  color: '#8b5cf6',
+                  background: 'rgba(139, 92, 246, 0.1)',
                   py: 1.5,
                   justifyContent: 'flex-start',
                   '&:hover': {
-                    background: 'rgba(255,255,255,0.1)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: '#7c3aed',
+                    transform: 'translateX(4px)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 Account Settings
@@ -896,7 +927,7 @@ const Profile = ({ darkMode }) => {
           </Grid>
           
           <Grid item xs={12} md={6}>
-            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 2 }}>
+            <Typography variant="subtitle1" sx={{ fontWeight: 'bold', mb: 2, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               Quick Access
             </Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -907,13 +938,18 @@ const Profile = ({ darkMode }) => {
                 startIcon={<BookmarkBorder />}
                 fullWidth
                 sx={{
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: darkMode ? '#ffffff' : '#000000',
+                  borderColor: '#8b5cf6',
+                  color: '#8b5cf6',
+                  background: 'rgba(139, 92, 246, 0.1)',
                   py: 1.5,
                   justifyContent: 'flex-start',
                   '&:hover': {
-                    background: 'rgba(255,255,255,0.1)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: '#7c3aed',
+                    transform: 'translateX(4px)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 View Favorites
@@ -925,13 +961,18 @@ const Profile = ({ darkMode }) => {
                 startIcon={<History />}
                 fullWidth
                 sx={{
-                  borderColor: 'rgba(255,255,255,0.4)',
-                  color: darkMode ? '#ffffff' : '#000000',
+                  borderColor: '#8b5cf6',
+                  color: '#8b5cf6',
+                  background: 'rgba(139, 92, 246, 0.1)',
                   py: 1.5,
                   justifyContent: 'flex-start',
                   '&:hover': {
-                    background: 'rgba(255,255,255,0.1)',
+                    background: 'rgba(139, 92, 246, 0.2)',
+                    borderColor: '#7c3aed',
+                    transform: 'translateX(4px)',
+                    boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)',
                   },
+                  transition: 'all 0.3s ease',
                 }}
               >
                 My Bookings
@@ -942,12 +983,16 @@ const Profile = ({ darkMode }) => {
                 fullWidth
                 onClick={handleLogout}
                 sx={{
-                  backgroundColor: '#dc2626',
+                  background: 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)',
+                  color: '#ffffff',
                   '&:hover': {
-                    backgroundColor: '#b91c1c',
+                    background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+                    transform: 'translateX(4px)',
+                    boxShadow: '0 4px 12px rgba(239, 68, 68, 0.4)',
                   },
                   py: 1.5,
                   justifyContent: 'flex-start',
+                  transition: 'all 0.3s ease',
                 }}
               >
                 Logout from Account
@@ -965,12 +1010,22 @@ const Profile = ({ darkMode }) => {
         fullWidth
         PaperProps={{
           sx: {
-            backgroundColor: darkMode ? '#1e293b' : '#ffffff',
-            color: darkMode ? '#ffffff' : '#000000',
+            background: darkMode 
+              ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(51, 65, 85, 0.98) 100%)'
+              : 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%)',
+            color: darkMode ? '#ffffff' : '#1e293b',
+            borderRadius: '20px',
+            border: darkMode 
+              ? '1px solid rgba(139, 92, 246, 0.3)'
+              : '1px solid rgba(139, 92, 246, 0.2)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: darkMode
+              ? '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 92, 246, 0.2)'
+              : '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(139, 92, 246, 0.1)',
           },
         }}
       >
-        <DialogTitle sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: 1 }}>
+        <DialogTitle sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: 1, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           <Edit />
           Edit Profile
         </DialogTitle>
@@ -985,13 +1040,14 @@ const Profile = ({ darkMode }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.3)',
                   },
                   '&:hover fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.5)' : 'rgba(139, 92, 246, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#475569',
+                    borderColor: '#8b5cf6',
+                    borderWidth: '2px',
                   },
                 },
               }}
@@ -1006,13 +1062,14 @@ const Profile = ({ darkMode }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.3)',
                   },
                   '&:hover fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.5)' : 'rgba(139, 92, 246, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#475569',
+                    borderColor: '#8b5cf6',
+                    borderWidth: '2px',
                   },
                 },
               }}
@@ -1026,13 +1083,14 @@ const Profile = ({ darkMode }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.3)',
                   },
                   '&:hover fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.5)' : 'rgba(139, 92, 246, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#475569',
+                    borderColor: '#8b5cf6',
+                    borderWidth: '2px',
                   },
                 },
               }}
@@ -1046,13 +1104,14 @@ const Profile = ({ darkMode }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.3)',
                   },
                   '&:hover fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.5)' : 'rgba(139, 92, 246, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#475569',
+                    borderColor: '#8b5cf6',
+                    borderWidth: '2px',
                   },
                 },
               }}
@@ -1064,10 +1123,12 @@ const Profile = ({ darkMode }) => {
             onClick={() => setEditDialogOpen(false)}
             startIcon={<Close />}
             sx={{
-              borderColor: 'rgba(255,255,255,0.4)',
-              color: darkMode ? '#ffffff' : '#000000',
+              borderColor: '#8b5cf6',
+              color: '#8b5cf6',
+              background: 'rgba(139, 92, 246, 0.1)',
               '&:hover': {
-                background: 'rgba(255,255,255,0.1)',
+                background: 'rgba(139, 92, 246, 0.2)',
+                borderColor: '#7c3aed',
               },
             }}
           >
@@ -1078,10 +1139,14 @@ const Profile = ({ darkMode }) => {
             variant="contained"
             startIcon={<Save />}
             sx={{
-              backgroundColor: '#475569',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: '#ffffff',
               '&:hover': {
-                backgroundColor: '#64748b',
+                background: 'linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%)',
+                transform: 'translateY(-2px)',
+                boxShadow: '0 8px 25px rgba(139, 92, 246, 0.4)',
               },
+              transition: 'all 0.3s ease',
             }}
           >
             Save Changes
@@ -1097,12 +1162,22 @@ const Profile = ({ darkMode }) => {
         fullWidth
         PaperProps={{
           sx: {
-            backgroundColor: darkMode ? '#1e293b' : '#ffffff',
-            color: darkMode ? '#ffffff' : '#000000',
+            background: darkMode 
+              ? 'linear-gradient(135deg, rgba(30, 41, 59, 0.98) 0%, rgba(51, 65, 85, 0.98) 100%)'
+              : 'linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(248, 250, 252, 0.98) 100%)',
+            color: darkMode ? '#ffffff' : '#1e293b',
+            borderRadius: '20px',
+            border: darkMode 
+              ? '1px solid rgba(139, 92, 246, 0.3)'
+              : '1px solid rgba(139, 92, 246, 0.2)',
+            backdropFilter: 'blur(10px)',
+            boxShadow: darkMode
+              ? '0 25px 50px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 92, 246, 0.2)'
+              : '0 25px 50px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(139, 92, 246, 0.1)',
           },
         }}
       >
-        <DialogTitle sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: 1 }}>
+        <DialogTitle sx={{ fontWeight: 'bold', display: 'flex', alignItems: 'center', gap: 1, background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
           <Lock />
           Change Password
         </DialogTitle>
@@ -1118,13 +1193,14 @@ const Profile = ({ darkMode }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.3)',
                   },
                   '&:hover fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.5)' : 'rgba(139, 92, 246, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#475569',
+                    borderColor: '#8b5cf6',
+                    borderWidth: '2px',
                   },
                 },
               }}
@@ -1140,13 +1216,14 @@ const Profile = ({ darkMode }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.3)',
                   },
                   '&:hover fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.5)' : 'rgba(139, 92, 246, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#475569',
+                    borderColor: '#8b5cf6',
+                    borderWidth: '2px',
                   },
                 },
               }}
@@ -1161,13 +1238,14 @@ const Profile = ({ darkMode }) => {
               sx={{
                 '& .MuiOutlinedInput-root': {
                   '& fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.3)' : 'rgba(139, 92, 246, 0.3)',
                   },
                   '&:hover fieldset': {
-                    borderColor: darkMode ? 'rgba(255,255,255,0.5)' : 'rgba(0,0,0,0.5)',
+                    borderColor: darkMode ? 'rgba(139, 92, 246, 0.5)' : 'rgba(139, 92, 246, 0.5)',
                   },
                   '&.Mui-focused fieldset': {
-                    borderColor: '#475569',
+                    borderColor: '#8b5cf6',
+                    borderWidth: '2px',
                   },
                 },
               }}
@@ -1179,10 +1257,12 @@ const Profile = ({ darkMode }) => {
             onClick={() => setPasswordDialogOpen(false)}
             startIcon={<Close />}
             sx={{
-              borderColor: 'rgba(255,255,255,0.4)',
-              color: darkMode ? '#ffffff' : '#000000',
+              borderColor: '#8b5cf6',
+              color: '#8b5cf6',
+              background: 'rgba(139, 92, 246, 0.1)',
               '&:hover': {
-                background: 'rgba(255,255,255,0.1)',
+                background: 'rgba(139, 92, 246, 0.2)',
+                borderColor: '#7c3aed',
               },
             }}
           >
@@ -1193,10 +1273,14 @@ const Profile = ({ darkMode }) => {
             variant="contained"
             startIcon={<Save />}
             sx={{
-              backgroundColor: '#475569',
+              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+              color: '#ffffff',
               '&:hover': {
-                backgroundColor: '#64748b',
+                background: 'linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%)',
+                transform: 'translateY(-2px)',
+                boxShadow: '0 8px 25px rgba(139, 92, 246, 0.4)',
               },
+              transition: 'all 0.3s ease',
             }}
           >
             Change Password
@@ -1215,8 +1299,13 @@ const Profile = ({ darkMode }) => {
           onClose={handleSnackbarClose}
           severity={snackbar.severity}
           sx={{
-            backgroundColor: snackbar.severity === 'error' ? '#dc2626' : '#059669',
+            background: snackbar.severity === 'error' 
+              ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'
+              : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
             color: '#ffffff',
+            borderRadius: '12px',
+            border: 'none',
+            boxShadow: '0 8px 25px rgba(0, 0, 0, 0.2)',
           }}
         >
           {snackbar.message}
